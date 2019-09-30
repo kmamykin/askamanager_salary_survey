@@ -1,0 +1,771 @@
+[
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "If you want to add your salary to this spreadsheet, go here:   https://www.askamanager.org/2019/04/how-much-money-do-you-make-3.html",
+    "newColumnName": "Timestamp",
+    "description": "Rename column If you want to add your salary to this spreadsheet, go here:   https://www.askamanager.org/2019/04/how-much-money-do-you-make-3.html to Timestamp"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column",
+    "newColumnName": "Age",
+    "description": "Rename column Column to Age"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column2",
+    "newColumnName": "Industry",
+    "description": "Rename column Column2 to Industry"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column3",
+    "newColumnName": "JobTitle",
+    "description": "Rename column Column3 to JobTitle"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column4",
+    "newColumnName": "AnnualSalary",
+    "description": "Rename column Column4 to AnnualSalary"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column5",
+    "newColumnName": "Currency",
+    "description": "Rename column Column5 to Currency"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column6",
+    "newColumnName": "Location",
+    "description": "Rename column Column6 to Location"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column7",
+    "newColumnName": "Experience",
+    "description": "Rename column Column7 to Experience"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column8",
+    "newColumnName": "Notes",
+    "description": "Rename column Column8 to Notes"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column9",
+    "newColumnName": "OtherCurrency",
+    "description": "Rename column Column9 to OtherCurrency"
+  },
+  {
+    "op": "core/row-removal",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Starred Rows",
+          "expression": "row.starred",
+          "columnName": "",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "description": "Remove rows"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Experience",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "5-7 years"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "5 - 7 years"
+      }
+    ],
+    "description": "Mass edit cells in column Experience"
+  },
+  {
+    "op": "core/recon",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Currency",
+          "expression": "value",
+          "columnName": "Currency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Other",
+                "l": "Other"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "OtherCurrency",
+    "config": {
+      "mode": "standard-service",
+      "service": "https://tools.wmflabs.org/openrefine-wikidata/en/api",
+      "identifierSpace": "http://www.wikidata.org/entity/",
+      "schemaSpace": "http://www.wikidata.org/prop/direct/",
+      "type": {
+        "id": "Q8142",
+        "name": "currency"
+      },
+      "autoMatch": true,
+      "columnDetails": [],
+      "limit": 0
+    },
+    "description": "Reconcile cells in column OtherCurrency to type Q8142"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Currency",
+          "expression": "value",
+          "columnName": "Currency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Other",
+                "l": "Other"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "OtherCurrency: judgment",
+          "expression": "forNonBlank(cell.recon.judgment, v, v, if(isNonBlank(value), \"(unreconciled)\", \"(blank)\"))",
+          "columnName": "OtherCurrency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "none",
+                "l": "none"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "OtherCurrency",
+    "similarValue": "INR",
+    "judgment": "matched",
+    "match": {
+      "id": "Q80524",
+      "name": "Indian rupee",
+      "types": [
+        "Q8142"
+      ],
+      "score": 100
+    },
+    "shareNewTopics": false,
+    "description": "Match item Indian rupee (Q80524) for cells containing \"INR\" in column OtherCurrency"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Currency",
+          "expression": "value",
+          "columnName": "Currency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Other",
+                "l": "Other"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "OtherCurrency: judgment",
+          "expression": "forNonBlank(cell.recon.judgment, v, v, if(isNonBlank(value), \"(unreconciled)\", \"(blank)\"))",
+          "columnName": "OtherCurrency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "none",
+                "l": "none"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "OtherCurrency",
+    "similarValue": "Israeli shekels",
+    "judgment": "matched",
+    "match": {
+      "id": "Q131309",
+      "name": "Israeli new shekel",
+      "types": [
+        "Q8142"
+      ],
+      "score": 90
+    },
+    "shareNewTopics": false,
+    "description": "Match item Israeli new shekel (Q131309) for cells containing \"Israeli shekels\" in column OtherCurrency"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Currency",
+          "expression": "value",
+          "columnName": "Currency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Other",
+                "l": "Other"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "OtherCurrency: judgment",
+          "expression": "forNonBlank(cell.recon.judgment, v, v, if(isNonBlank(value), \"(unreconciled)\", \"(blank)\"))",
+          "columnName": "OtherCurrency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "none",
+                "l": "none"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "OtherCurrency",
+    "similarValue": "CLP",
+    "judgment": "matched",
+    "match": {
+      "id": "Q18974310",
+      "name": "PFC10_API0060",
+      "types": [
+        ""
+      ],
+      "score": 37.5
+    },
+    "shareNewTopics": false,
+    "description": "Match item PFC10_API0060 (Q18974310) for cells containing \"CLP\" in column OtherCurrency"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Currency",
+          "expression": "value",
+          "columnName": "Currency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Other",
+                "l": "Other"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "OtherCurrency: judgment",
+          "expression": "forNonBlank(cell.recon.judgment, v, v, if(isNonBlank(value), \"(unreconciled)\", \"(blank)\"))",
+          "columnName": "OtherCurrency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "none",
+                "l": "none"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "OtherCurrency",
+    "similarValue": "Canadian",
+    "judgment": "matched",
+    "match": {
+      "id": "Q1104069",
+      "name": "Canadian dollar",
+      "types": [
+        "Q8142"
+      ],
+      "score": 73
+    },
+    "shareNewTopics": false,
+    "description": "Match item Canadian dollar (Q1104069) for cells containing \"Canadian\" in column OtherCurrency"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Currency",
+          "expression": "value",
+          "columnName": "Currency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Other",
+                "l": "Other"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "OtherCurrency: judgment",
+          "expression": "forNonBlank(cell.recon.judgment, v, v, if(isNonBlank(value), \"(unreconciled)\", \"(blank)\"))",
+          "columnName": "OtherCurrency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "none",
+                "l": "none"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "OtherCurrency",
+    "similarValue": "DKR",
+    "judgment": "matched",
+    "match": {
+      "id": "Q407616",
+      "name": "DKR",
+      "types": [
+        ""
+      ],
+      "score": 100
+    },
+    "shareNewTopics": false,
+    "description": "Match item DKR (Q407616) for cells containing \"DKR\" in column OtherCurrency"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Currency",
+          "expression": "value",
+          "columnName": "Currency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Other",
+                "l": "Other"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "OtherCurrency: judgment",
+          "expression": "forNonBlank(cell.recon.judgment, v, v, if(isNonBlank(value), \"(unreconciled)\", \"(blank)\"))",
+          "columnName": "OtherCurrency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "none",
+                "l": "none"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "OtherCurrency",
+    "similarValue": "Indian Rupee (INR)",
+    "judgment": "matched",
+    "match": {
+      "id": "Q80524",
+      "name": "Indian rupee",
+      "types": [
+        "Q8142"
+      ],
+      "score": 87
+    },
+    "shareNewTopics": false,
+    "description": "Match item Indian rupee (Q80524) for cells containing \"Indian Rupee (INR)\" in column OtherCurrency"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Currency",
+          "expression": "value",
+          "columnName": "Currency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Other",
+                "l": "Other"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "OtherCurrency: judgment",
+          "expression": "forNonBlank(cell.recon.judgment, v, v, if(isNonBlank(value), \"(unreconciled)\", \"(blank)\"))",
+          "columnName": "OtherCurrency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "none",
+                "l": "none"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "OtherCurrency",
+    "similarValue": "INR - Indian Rupees",
+    "judgment": "matched",
+    "match": {
+      "id": "Q80524",
+      "name": "Indian rupee",
+      "types": [
+        "Q8142"
+      ],
+      "score": 87
+    },
+    "shareNewTopics": false,
+    "description": "Match item Indian rupee (Q80524) for cells containing \"INR - Indian Rupees\" in column OtherCurrency"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Currency",
+          "expression": "value",
+          "columnName": "Currency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Other",
+                "l": "Other"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "OtherCurrency: judgment",
+          "expression": "forNonBlank(cell.recon.judgment, v, v, if(isNonBlank(value), \"(unreconciled)\", \"(blank)\"))",
+          "columnName": "OtherCurrency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "none",
+                "l": "none"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "OtherCurrency",
+    "similarValue": "indian rupee iNR",
+    "judgment": "matched",
+    "match": {
+      "id": "Q80524",
+      "name": "Indian rupee",
+      "types": [
+        "Q8142"
+      ],
+      "score": 87
+    },
+    "shareNewTopics": false,
+    "description": "Match item Indian rupee (Q80524) for cells containing \"indian rupee iNR\" in column OtherCurrency"
+  },
+  {
+    "op": "core/recon-match-best-candidates",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Currency",
+          "expression": "value",
+          "columnName": "Currency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Other",
+                "l": "Other"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "OtherCurrency",
+    "description": "Match each cell to its best recon candidate in column OtherCurrency"
+  },
+  {
+    "op": "core/row-removal",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "OtherCurrency Judgment Action type",
+          "expression": "cell.recon.judgmentAction",
+          "columnName": "OtherCurrency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "single",
+                "l": "single"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "description": "Remove rows"
+  },
+  {
+    "op": "core/extend-reconciled-data",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "OtherCurrency",
+    "endpoint": "https://tools.wmflabs.org/openrefine-wikidata/en/api",
+    "identifierSpace": "http://www.wikidata.org/entity/",
+    "schemaSpace": "http://www.wikidata.org/prop/direct/",
+    "extension": {
+      "properties": [
+        {
+          "id": "P498",
+          "name": "ISO 4217 code"
+        },
+        {
+          "id": "P489",
+          "name": "currency symbol description"
+        },
+        {
+          "id": "P2370",
+          "name": "conversion to SI unit"
+        },
+        {
+          "id": "P2442",
+          "name": "conversion to standard unit"
+        },
+        {
+          "id": "P6512",
+          "name": "UN/CEFACT common code"
+        }
+      ]
+    },
+    "columnInsertIndex": 10,
+    "description": "Extend data at index 10 based on column OtherCurrency"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "currency symbol description",
+    "description": "Remove column currency symbol description"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "conversion to SI unit",
+    "description": "Remove column conversion to SI unit"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "conversion to standard unit",
+    "description": "Remove column conversion to standard unit"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "UN/CEFACT common code",
+    "description": "Remove column UN/CEFACT common code"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Currency",
+          "expression": "value",
+          "columnName": "Currency",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Other",
+                "l": "Other"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Currency",
+    "expression": "grel:if(value == \"Other\", row.cells[\"ISO 4217 code\"].value, value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Currency using expression grel:if(value == \"Other\", row.cells[\"ISO 4217 code\"].value, value)"
+  }
+]
