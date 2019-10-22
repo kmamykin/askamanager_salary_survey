@@ -18,5 +18,10 @@ https://www.trinityp3.com/calculators/
 Google API Key: AIzaSyCmmdNgylHYkAa4hlB3B-cIV0Q_rFd__gU
 AIzaSyCqd-BAzUsp6a2ICBETWebYYwoA3d3EeWk
 
+Industry codes: https://developer.linkedin.com/docs/reference/industry-codes#
+https://www.webspidermount.com/features/generic-job-taxonomy/
+https://en.wikipedia.org/wiki/Global_Industry_Classification_Standard
+https://en.wikipedia.org/wiki/Industry_Classification_Benchmark
+
 
 "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + escape(value.strip(), "url") + "&inputtype=textquery&fields=formatted_address,name&type=locality&key=AIzaSyCqd-BAzUsp6a2ICBETWebYYwoA3d3EeWk"
