@@ -1,4 +1,4 @@
-# askamanager Salary SUrvey
+# askamanager Salary Survey
 
 Cleaned up dataset of self-reported salaries
 

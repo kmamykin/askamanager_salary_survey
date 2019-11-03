@@ -6,3 +6,6 @@ utils/luminati_proxies.csv
 utils/trusted_proxies.csv
 .~workbook*
 .Rproj.user
+.RData
+.Rhistory
+
